@@ -1,14 +1,15 @@
 package com.jiavan.leapinglight;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class StageActivity extends Activity{
@@ -27,7 +28,6 @@ public class StageActivity extends Activity{
 		setContentView(R.layout.activity_stage);
 		initData();
 		mBLE.connect(deviceAdress);
-		Log.i("TAG", deviceAdress + "is :" + mBLE.connect(deviceAdress));
 		
 		bt_shade = (Button)findViewById(R.id.bt_shade);
 		bt_shade.setOnClickListener(new OnClickListener() {
@@ -56,11 +56,18 @@ public class StageActivity extends Activity{
             finish();
         }
 		
-		/*llCricle = (LinearLayout)findViewByLIGHT_IIIId(R.id.ll_circle);
-		LayoutParams lp = llCricle.getLayoutParams();
-		lp.width = (int)this.screenWidth / 2;		dest.writeValue(mBLE);
+		RelativeLayout rlCricle = (RelativeLayout)findViewById(R.id.rl_circle);
+		LayoutParams lp = rlCricle.getLayoutParams();
+		lp.width = (int)(this.screenWidth * (2.0f / 3));
 		lp.height = lp.width;
-		llCricle.setLayoutParams(lp);*/
+		//llCricle.setBackgroundColor(0x00aaff);
+		rlCricle.setLayoutParams(lp);
+		
+		ImageButton ibRed = (ImageButton)findViewById(R.id.ib_red);
+		lp = ibRed.getLayoutParams();
+		lp.width = (int)(this.screenWidth * (1.0f / 2));
+		lp.height = lp.width;
+		ibRed.setLayoutParams(lp);
 	}
 
 	@Override

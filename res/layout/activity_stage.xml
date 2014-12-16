@@ -9,6 +9,8 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:background="#666666"
+        android:gravity="center"
+        android:layout_gravity="center"
         android:layout_weight="2">
         
         <TextView 
@@ -21,17 +23,38 @@
     </LinearLayout>
     <LinearLayout 
         android:id="@+id/ll_mid"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="#ff00ff"
+        android:background="#000000"
+        android:layout_gravity="center"
         android:layout_weight="6">
+        
+        <RelativeLayout 
+            android:id="@+id/rl_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/stage_circle"
+            >
+            <ImageButton 
+                android:id="@+id/ib_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/light_red"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"/>
+            
+        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
+        android:background="#000000"
         android:layout_weight="1">
         <Button 
             android:id="@+id/bt_flash"
