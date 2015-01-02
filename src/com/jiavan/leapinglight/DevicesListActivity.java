@@ -3,6 +3,8 @@ package com.jiavan.leapinglight;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Text;
+
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -10,13 +12,18 @@ import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DevicesListActivity extends Activity {
@@ -24,6 +31,9 @@ public class DevicesListActivity extends Activity {
 	private ListView lvDevices;
 	private Handler mHandler;
 	private boolean mScanning;
+	private Button btScan;
+	private Button btAbout;
+	private TextView tvBottom;
 	private BluetoothAdapter mBluetoothAdapter;
 	private List<String> listDevicesInfo;
 	private List<BluetoothDevice> listDevices;
@@ -32,8 +42,8 @@ public class DevicesListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices_list);
-        initData();
         openBluetooth();
+        initData();
     }
     
     @Override
@@ -62,6 +72,25 @@ public class DevicesListActivity extends Activity {
 				DevicesListActivity.this.startActivity(intent);
 			}
 		});
+		
+		btScan.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				scanLeDevice(true);
+			}
+		});
+		
+		tvBottom.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(DevicesListActivity.this, MainActivity.class);
+				DevicesListActivity.this.startActivity(intent);
+			}
+		});
 	}
 
 	//init the data
@@ -70,8 +99,24 @@ public class DevicesListActivity extends Activity {
     	listDevices = new ArrayList<BluetoothDevice>();
     	listDevicesInfo = new ArrayList<String>();
     	lvDevices = (ListView)findViewById(R.id.lv_devices);
-    	mBTAdapter = new ArrayAdapter<String>(DevicesListActivity.this, android.R.layout.simple_expandable_list_item_1, listDevicesInfo);
+    	//mBTAdapter = new ArrayAdapter<String>(DevicesListActivity.this, android.R.layout.simple_list_item_1, listDevicesInfo);
+    	
+    	mBTAdapter = new ArrayAdapter<String>(DevicesListActivity.this, 
+    	        android.R.layout.simple_list_item_1, listDevicesInfo) {
+    	    @Override
+    	    public View getView(int position, View convertView, ViewGroup parent) {
+    	        View view = super.getView(position, convertView, parent);
+    	        TextView text = (TextView) view.findViewById(android.R.id.text1);
+    	        text.setTextColor(Color.BLACK);
+    	        return view;
+    	    }
+    	};
+    	
     	lvDevices.setAdapter(mBTAdapter);
+    	
+    	btScan = (Button)findViewById(R.id.bt_scan);
+    	btAbout = (Button)findViewById(R.id.bt_scan);
+    	tvBottom = (TextView)findViewById(R.id.tv_bottom);
     }
     //open the bluetooth
     private boolean openBluetooth(){
@@ -99,6 +144,7 @@ public class DevicesListActivity extends Activity {
     
     //scan the devices
     private void scanLeDevice(final boolean enable){
+    	
     	if(enable){
     		mHandler.postDelayed(new Runnable() {
 				
@@ -123,9 +169,11 @@ public class DevicesListActivity extends Activity {
 		@Override
 		public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
 			// TODO Auto-generated method stub
-			listDevicesInfo.add(device.getName() + "\n" + device.getAddress());
-			listDevices.add(device);
-			mBTAdapter.notifyDataSetChanged();
+			if(listDevices.indexOf(device) == -1){
+				listDevicesInfo.add(device.getName() + "\n" + device.getAddress());
+				listDevices.add(device);
+				mBTAdapter.notifyDataSetChanged();
+			}
 		}
 	};
 }

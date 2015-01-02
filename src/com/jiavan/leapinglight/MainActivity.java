@@ -54,10 +54,12 @@ public class MainActivity extends Activity{
 				if(LIGHT_STATE == 0){
 					Constant.gattWriteServices(mBLE.getSupportedGattServices(), Constant.LIGHT_OFF, mBLE);
 					ibPower.setBackgroundResource(R.drawable.light_off);
+					setCurrentState(0, true);
 					lightSwitch = false;
 				}else{
 					Constant.gattWriteServices(mBLE.getSupportedGattServices(), Constant.LIGHT_ON, mBLE);
 					ibPower.setBackgroundResource(R.drawable.light_on);
+					setCurrentState(1, true);
 					lightSwitch = true;
 				}
 			}
@@ -72,6 +74,8 @@ public class MainActivity extends Activity{
 				currentLightPower = 1;
 				lightSwitch = true;
 				setCurrentState(currentLightPower, lightSwitch);
+				ibPower.setBackgroundResource(R.drawable.light_on);
+				
 			}
 		});
 		ibPowerII.setOnClickListener(new OnClickListener() {
@@ -83,6 +87,7 @@ public class MainActivity extends Activity{
 				currentLightPower = 2;
 				lightSwitch = true;
 				setCurrentState(currentLightPower, lightSwitch);
+				ibPower.setBackgroundResource(R.drawable.light_on);
 			}
 		});
 		ibPowerIII.setOnClickListener(new OnClickListener() {
@@ -94,6 +99,7 @@ public class MainActivity extends Activity{
 				currentLightPower = 3;
 				lightSwitch = true;
 				setCurrentState(currentLightPower, lightSwitch);
+				ibPower.setBackgroundResource(R.drawable.light_on);
 			}
 		});
 	}
@@ -107,8 +113,6 @@ public class MainActivity extends Activity{
         	Toast.makeText(this, "init data error!", Toast.LENGTH_LONG).show();
             finish();
         }
-        
-        
         
         this.startX = 0;
         this.endX = 0;
@@ -136,7 +140,11 @@ public class MainActivity extends Activity{
 	}
 	
 	private void setCurrentState(int lightPower, boolean lightSwitch){
-		if(lightPower == 1){
+		if(lightPower == 0){
+			ibPowerI.setBackgroundResource(R.drawable.light_power_off);
+			ibPowerII.setBackgroundResource(R.drawable.light_power_off);
+			ibPowerIII.setBackgroundResource(R.drawable.light_power_off);
+		}else if(lightPower == 1){
 			ibPowerI.setBackgroundResource(R.drawable.light_power_on);
 			ibPowerII.setBackgroundResource(R.drawable.light_power_off);
 			ibPowerIII.setBackgroundResource(R.drawable.light_power_off);
@@ -167,12 +175,6 @@ public class MainActivity extends Activity{
 				intent.putExtra("adress", deviceAdress);
 				MainActivity.this.startActivity(intent);
 				overridePendingTransition(R.anim.in_from_right,R.anim.out_to_left);  
-				/*LayoutInflater inflator = this.getLayoutInflater();
-				View viewIn = inflator.inflate(R.layout.activity_stage, null, false);
-				View viewOut = inflator.inflate(R.layout.activity_main, null, false);
-				viewOut.startAnimation(AnimationUtils.loadAnimation(this, R.anim.out_to_left));
-				viewIn.startAnimation(AnimationUtils.loadAnimation(this, R.anim.in_from_right));
-				setContentView(viewIn);*/
 			}
 		}
 		
@@ -193,7 +195,7 @@ public class MainActivity extends Activity{
 
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub				intent.putE
+		// TODO Auto-generated method stubintent.putE
 		super.onStop();
 	}
 

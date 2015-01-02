@@ -7,15 +7,17 @@
         android:id="@+id/ll_head"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
+        android:background="#0D0D0D"
         android:orientation="vertical"
-        android:background="#666666"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_weight="2">
-        
-        <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:layout_weight="2.5">
+        <ImageView 
+            android:id="@+id/im_head"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="0dp"/>
+        <TextView android:theme="@style/AppTheme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="舞台模式"
             android:textSize="40dp"
             android:layout_gravity="center"
@@ -23,38 +25,25 @@
     </LinearLayout>
     <LinearLayout 
         android:id="@+id/ll_mid"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:background="#000000"
         android:layout_gravity="center"
-        android:layout_weight="6">
-        
-        <RelativeLayout 
-            android:id="@+id/rl_circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/stage_circle"
-            >
-            <ImageButton 
-                android:id="@+id/ib_red"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:src="@drawable/light_red"
-                android:layout_alignParentTop="true"
-                android:scaleType="fitXY"
-                android:layout_centerHorizontal="true"/>
-            
-        </RelativeLayout>
+        android:layout_weight="6.5">
+       
+        <ImageView 
+            android:id="@+id/stage_circle"
+            android:src="@drawable/stage_circle"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:background="#000000"
         android:layout_weight="1">
         <Button 
             android:id="@+id/bt_flash"
@@ -63,22 +52,27 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1"
+            android:background="#333333"
             android:text="频闪"/>
         <Button 
             android:id="@+id/bt_shade"
             android:layout_width="0dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
             android:layout_height="fill_parent"
             android:gravity="center"
             android:layout_weight="1"
+            android:background="#333333"
             android:text="渐变"/>
         <Button 
             android:id="@+id/bt_breath"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:gravity="center"
+            android:layout_marginLeft="2dp"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="#333333"
             android:text="呼吸"/>
         <Button 
             android:id="@+id/bt_music"
@@ -87,6 +81,8 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:layout_marginLeft="2dp"
+            android:background="#333333"
             android:text="音乐"/>
     </LinearLayout>
 

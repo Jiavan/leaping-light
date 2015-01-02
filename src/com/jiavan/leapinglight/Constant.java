@@ -15,6 +15,14 @@ public class Constant {
 	public static final byte[] LIGHT_II = {0x03};
 	public static final byte[] LIGHT_III = {0x04};
 	public static final byte[] LIGHT_COMMON = {0x05};
+	public static final byte[] LIGHT_RED = {0x07};
+	public static final byte[] LIGHT_GREEN = {0x08};
+	public static final byte[] LIGHT_BLUE = {0x09};
+	public static final byte[] LIGHT_WHITE = {0x0A};
+	public static final byte[] LIGHT_SHADE = {0x0B};
+	public static final byte[] LIGHT_FLASH = {0x0C};
+	public static final byte[] LIGHT_BREATH = {0x0E};
+	public static final byte[] LIGHT_MUSIC = {0x0D};
 	
 	//discovery the services
 	public static void gattWriteServices(List<BluetoothGattService> gattServices, byte[] data, BluetoothLeClass mBle) {
