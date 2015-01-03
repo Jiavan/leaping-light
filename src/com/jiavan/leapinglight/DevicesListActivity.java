@@ -33,6 +33,8 @@ public class DevicesListActivity extends Activity {
 	private boolean mScanning;
 	private Button btScan;
 	private Button btAbout;
+	private BluetoothLeClass mBLE;
+	private BleData bleObj;
 	private TextView tvBottom;
 	private BluetoothAdapter mBluetoothAdapter;
 	private List<String> listDevicesInfo;
@@ -42,6 +44,7 @@ public class DevicesListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices_list);
+        
         openBluetooth();
         initData();
     }
@@ -50,6 +53,15 @@ public class DevicesListActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		bleObj = (BleData)this.getApplication();
+		this.mBLE = bleObj.getmBle();
+		
+		if(mBLE != null){
+			mBLE.close();
+		}
+		listDevices.clear();
+		listDevicesInfo.clear();
+		mBTAdapter.notifyDataSetChanged();
 		scanLeDevice(true);
 		
 		lvDevices.setOnItemClickListener(new OnItemClickListener() {
@@ -70,6 +82,7 @@ public class DevicesListActivity extends Activity {
 				intent.setClass(DevicesListActivity.this, MainActivity.class);
 				intent.putExtra("adress", adress);
 				DevicesListActivity.this.startActivity(intent);
+				overridePendingTransition(R.anim.in_from_right,R.anim.out_to_left);
 			}
 		});
 		
@@ -79,6 +92,18 @@ public class DevicesListActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				scanLeDevice(true);
+			}
+		});
+		
+		btAbout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(DevicesListActivity.this, AboutActivity.class);
+				DevicesListActivity.this.startActivity(intent);
+				overridePendingTransition(R.anim.in_from_left,R.anim.out_to_right);
 			}
 		});
 		
@@ -115,7 +140,7 @@ public class DevicesListActivity extends Activity {
     	lvDevices.setAdapter(mBTAdapter);
     	
     	btScan = (Button)findViewById(R.id.bt_scan);
-    	btAbout = (Button)findViewById(R.id.bt_scan);
+    	btAbout = (Button)findViewById(R.id.bt_about);
     	tvBottom = (TextView)findViewById(R.id.tv_bottom);
     }
     //open the bluetooth
@@ -137,7 +162,9 @@ public class DevicesListActivity extends Activity {
             finish();
         }
         //open the bluetooth
-        if(mBluetoothAdapter.isEnabled()){
+        if(!mBluetoothAdapter.isEnabled()){
+        	mBluetoothAdapter.enable();
+        	Toast.makeText(this, "开启蓝牙成功", Toast.LENGTH_SHORT).show();
         	return true;
         }else return false;
     }

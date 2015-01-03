@@ -54,7 +54,8 @@ public class MainActivity extends Activity{
 				if(LIGHT_STATE == 0){
 					Constant.gattWriteServices(mBLE.getSupportedGattServices(), Constant.LIGHT_OFF, mBLE);
 					ibPower.setBackgroundResource(R.drawable.light_off);
-					setCurrentState(0, true);
+					currentLightPower = 0;
+					setCurrentState(currentLightPower, true);
 					lightSwitch = false;
 				}else{
 					Constant.gattWriteServices(mBLE.getSupportedGattServices(), Constant.LIGHT_ON, mBLE);
@@ -75,6 +76,7 @@ public class MainActivity extends Activity{
 				lightSwitch = true;
 				setCurrentState(currentLightPower, lightSwitch);
 				ibPower.setBackgroundResource(R.drawable.light_on);
+				LIGHT_STATE = 1;
 				
 			}
 		});
@@ -88,6 +90,7 @@ public class MainActivity extends Activity{
 				lightSwitch = true;
 				setCurrentState(currentLightPower, lightSwitch);
 				ibPower.setBackgroundResource(R.drawable.light_on);
+				LIGHT_STATE = 1;
 			}
 		});
 		ibPowerIII.setOnClickListener(new OnClickListener() {
@@ -100,6 +103,7 @@ public class MainActivity extends Activity{
 				lightSwitch = true;
 				setCurrentState(currentLightPower, lightSwitch);
 				ibPower.setBackgroundResource(R.drawable.light_on);
+				LIGHT_STATE = 1;
 			}
 		});
 	}
@@ -175,6 +179,9 @@ public class MainActivity extends Activity{
 				intent.putExtra("adress", deviceAdress);
 				MainActivity.this.startActivity(intent);
 				overridePendingTransition(R.anim.in_from_right,R.anim.out_to_left);  
+			}else if((endX - startX) > (this.screenWidth / 4)){
+				finish();
+				overridePendingTransition(R.anim.in_from_left,R.anim.out_to_right);
 			}
 		}
 		

@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jiavan.leapinglight.DevicesListActivity" >
+
+    <TextView 
+        android:id="@+id/tv_head"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#ff0000"/>
+    <ListView 
+        android:id="@+id/lv_devices"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"/>
+    <TextView 
+        android:id="@+id/tv_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#00ff00"/>
+
+</LinearLayout>
+<!-- From: file:/home/jiavan/桌面/LeapingLight-master/res/layout/activity_devices_list.xml -->

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/ll_head"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="#666666"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_weight="2">
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="舞台模式"
+            android:textSize="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+    </LinearLayout>
+    <AbsoluteLayout 
+        android:id="@+id/ll_mid"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:background="#000000"
+        android:layout_gravity="center"
+        android:layout_weight="6">
+        
+        
+            
+    </AbsoluteLayout>
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="#000000"
+        android:layout_weight="1">
+        <Button 
+            android:id="@+id/bt_flash"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="频闪"/>
+        <Button 
+            android:id="@+id/bt_shade"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="渐变"/>
+        <Button 
+            android:id="@+id/bt_breath"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="呼吸"/>
+        <Button 
+            android:id="@+id/bt_music"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="音乐"/>
+    </LinearLayout>
+
+</LinearLayout>
+<!-- From: file:/home/jiavan/桌面/LeapingLight-master/res/layout/activity_stage.xml -->

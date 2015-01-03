@@ -18,22 +18,37 @@
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name=".DevicesListActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            
         </activity>
         <activity 
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="MainActivty">
             
         </activity>
         <activity 
             android:name=".StageActivity"
+            android:screenOrientation="portrait"
             android:label="StageActivity">
             
+        </activity>
+        <activity 
+            android:name=".AboutActivity"
+            android:screenOrientation="portrait"
+            android:label="AboutActivity">
+            
+        </activity>
+        <activity 
+            android:name=".LogoActivity"
+            android:screenOrientation="portrait"
+            android:label="LogoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
