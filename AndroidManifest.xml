@@ -19,7 +19,7 @@
         <activity
             android:name=".DevicesListActivity"
             android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:label="DevicesList" >
             
         </activity>
         <activity 
@@ -31,19 +31,19 @@
         <activity 
             android:name=".StageActivity"
             android:screenOrientation="portrait"
-            android:label="StageActivity">
+            android:label="Stage">
             
         </activity>
         <activity 
             android:name=".AboutActivity"
             android:screenOrientation="portrait"
-            android:label="AboutActivity">
+            android:label="About">
             
         </activity>
         <activity 
             android:name=".LogoActivity"
             android:screenOrientation="portrait"
-            android:label="LogoActivity">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
